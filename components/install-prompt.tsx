@@ -19,7 +19,6 @@ export function InstallPrompt() {
          e.preventDefault()
          setDeferred(e as BeforeInstallPromptEvent)
       }
-
       window.addEventListener("beforeinstallprompt", onPrompt)
       return () => window.removeEventListener("beforeinstallprompt", onPrompt)
    }, [])
