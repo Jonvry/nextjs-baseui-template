@@ -16,6 +16,16 @@ const eslintConfig = defineConfig([
    ]),
 
    {
+      // Pin the React version so eslint-plugin-react (pulled in by eslint-config-next)
+      // skips its auto-detection, which crashes on ESLint 10 because it calls the
+      // removed `context.getFilename()`. Remove this once eslint-config-next ships a
+      // plugin-react version compatible with ESLint 10.
+      settings: {
+         react: {
+            version: "19.2",
+         },
+      },
+
       plugins: {
          "unused-imports": unusedImports, // register plugin
       },
@@ -38,6 +48,9 @@ const eslintConfig = defineConfig([
          // Code quality
          "no-console": ["warn", { allow: ["warn", "error"] }],
          "@typescript-eslint/no-explicit-any": "warn",
+
+         // Disable base rule in favor of unused-imports (which honors the `_` prefix).
+         "@typescript-eslint/no-unused-vars": "off",
 
          // Unused detection (via plugin)
          // Remove unused imports automatically or throw error
