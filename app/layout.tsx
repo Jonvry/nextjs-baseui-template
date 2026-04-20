@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next"
 import { Figtree, Geist } from "next/font/google"
+import { ServiceWorkerRegister } from "@/components/sw-register"
 import { ThemeProvider } from "@/context/theme-provider"
 import { cn } from "@/lib/utils"
 import "./globals.css"
@@ -72,6 +73,7 @@ export default function RootLayout({
       >
          <body>
             <ThemeProvider>{children}</ThemeProvider>
+            <ServiceWorkerRegister />
          </body>
       </html>
    )

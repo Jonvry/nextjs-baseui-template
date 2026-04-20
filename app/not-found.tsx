@@ -9,8 +9,8 @@ export const metadata: Metadata = {
 export default function NotFound() {
    return (
       <div className="flex min-h-screen flex-col items-center justify-center px-6 text-center">
-         <h1 className="text-5xl font-bold md:text-7xl">404</h1>
-         <h2 className="text-2xl font-semibold">Page not found</h2>
+         <h1 className="text-5xl text-foreground font-bold md:text-7xl">404</h1>
+         <h2 className="text-2xl text-foreground font-semibold">Page not found</h2>
          <p className="text-muted-foreground mt-2 max-w-md">
             Sorry, the page you’re looking for doesn’t exist or has been moved.
          </p>
