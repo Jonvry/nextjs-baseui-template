@@ -45,6 +45,8 @@ pnpm dlx shadcn@latest add dialog
 
 **Tailwind v4, no `tailwind.config.*`.** All theme tokens (colors as OKLCH, radii, fonts) live in `app/globals.css` via `@theme inline` and CSS custom properties. Dark mode is a `.dark` class variant (`@custom-variant dark (&:is(.dark *))`) driven by `next-themes` through `context/theme-provider.tsx`. To add a token, add the CSS variable in `:root` + `.dark`, then expose it under `@theme inline`.
 
+**Body defaults.** `app/globals.css` applies `bg-background text-sm text-muted-foreground` + the sans font to `body`. Don't repeat `text-sm`, `text-muted-foreground`, or `font-sans` on children — they inherit. Only add classes when the element differs: `text-foreground` for stronger text, `text-base`/`text-lg` for larger sizes, `font-medium`/`font-semibold` for emphasis.
+
 **Middleware file is `proxy.ts`, not `middleware.ts`.** Next 16 renamed the convention; the exported function is `proxy()`. Keep the matcher excluding `api`, `_next/static`, `_next/image`, and metadata routes.
 
 **Metadata pattern in `app/layout.tsx`.** `SITE_NAME`, `SITE_DESCRIPTION`, `SITE_URL` (from `NEXT_PUBLIC_BASE_URL`) are defined at the top and reused across `metadata`, `viewport`, OG, and Twitter. `app/robots.ts` and `app/sitemap.ts` currently hard-code `sitename.com` — update both when the site name is known. `app/opengraph-image.jpeg` is the default OG image; `app/layout.tsx` references `.png` — rename or update one to match when customizing.
