@@ -10,6 +10,8 @@
       "lint": "eslint",
       "format": "prettier --write \"**/*.{ts,tsx}\"",
       "typecheck": "tsc --noEmit",
+      "test": "vitest run",
+      "test:watch": "vitest",
       "prepare": "husky",
       "lint:claude": "claude -p 'you are a linter. please look at the changes vs. main and report any issues related to typos. report the filename and line number on one line, and a description of the issue on the second line. do not return any other text.'"
    },
@@ -31,20 +33,26 @@
    "devDependencies": {
       "@eslint/eslintrc": "^3.3.5",
       "@tailwindcss/postcss": "^4.2.2",
+      "@testing-library/jest-dom": "^6.9.1",
+      "@testing-library/react": "^16.3.2",
+      "@testing-library/user-event": "^14.6.1",
       "@trivago/prettier-plugin-sort-imports": "^6.0.2",
       "@types/node": "^25.6.0",
       "@types/react": "^19.2.14",
       "@types/react-dom": "^19.2.3",
+      "@vitejs/plugin-react": "^6.0.1",
       "eslint": "^10.2.1",
       "eslint-config-next": "16.2.4",
       "eslint-plugin-unused-imports": "^4.4.1",
       "husky": "^9.1.7",
+      "jsdom": "^29.0.2",
       "lint-staged": "^16.4.0",
       "postcss": "^8.5.10",
       "prettier": "^3.8.3",
       "prettier-plugin-tailwindcss": "^0.7.2",
       "tailwindcss": "^4.2.2",
-      "typescript": "^6.0.3"
+      "typescript": "^6.0.3",
+      "vitest": "^4.1.4"
    },
    "lint-staged": {
       "**/*": "prettier --write --ignore-unknown"
