@@ -6,6 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Personal Next.js 16 starter template (App Router, React 19, Tailwind v4, shadcn/ui on Base UI primitives). Intended to be cloned and customized per project — keep changes generic and template-appropriate unless told otherwise.
 
+Routes follow a **feature-based architecture** using Next.js private folders (`_*`) — see the "Feature-based architecture" section below for the private-folder convention and cross-page sharing rules.
+
 ## Commands
 
 ```bash
@@ -55,11 +57,11 @@ pnpm dlx shadcn@latest add dialog
 
 **Folder intent** (keep this list in sync — see maintenance note below):
 
-- `app/` — routes, layout, metadata (route handlers, sitemap, robots)
+- `app/` — routes, layout, metadata (route handlers, sitemap, robots). Uses `_*` private folders — see "Feature-based architecture" below.
 - `components/ui/` — shadcn-installed primitives only
-- `components/` (root) — app-level composed components
+- `components/` (root) — app-level composed components (shared across routes)
 - `context/` — client providers (theme, optional stubs like `query-provider.tsx`)
-- `hooks/` — reusable client hooks (`use-*` prefix)
+- `hooks/` — reusable client hooks (`use-*` prefix), shared across routes
 - `lib/` — framework-agnostic utilities (`cn` lives in `lib/utils.ts`)
 - `public/` — static assets served at the root (`/`)
 
@@ -69,7 +71,52 @@ pnpm dlx shadcn@latest add dialog
 
 **Prettier specifics that catch people out.** 3-space tabs, no semicolons, double quotes, `printWidth: 100`. `@trivago/prettier-plugin-sort-imports` enforces import order: `server-only` → `react` → `next*` → third-party → `@/*` → relative. Don't manually reorder — let Prettier do it.
 
-**Husky + lint-staged run on pre-commit** (`.husky/pre-commit` → `pnpm exec lint-staged`). Note: `package.json` does not currently define a `lint-staged` config block — if the hook fails with "no configuration found," add one rather than bypassing with `--no-verify`.
+**Husky + lint-staged run on pre-commit** (`.husky/pre-commit` → `pnpm exec lint-staged`). The `lint-staged` config in `package.json` runs `prettier --write --ignore-unknown` on all staged files. Add more tools (eslint, typecheck) to the config rather than bypassing with `--no-verify`.
+
+## Feature-based architecture
+
+Routes own their logic. Everything a page needs — components, hooks, stores, utilities — lives _next to_ the route file in a [Next.js private folder](https://nextjs.org/docs/app/api-reference/file-conventions/private-folders) (prefixed with `_`). Private folders are ignored by the routing system and produce no route segment.
+
+### Private folders
+
+| Folder        | Purpose                           |
+| ------------- | --------------------------------- |
+| `_components` | UI components scoped to the route |
+| `_hooks`      | Feature-specific React hooks      |
+| `_stores`     | Zustand state stores              |
+| `_utils`      | Helper functions                  |
+| `_constant`   | Static configuration              |
+| `_lib`        | Business logic, schemas, context  |
+
+Example:
+
+```
+app/
+   dashboard/
+      _components/
+         user-card.tsx
+      _hooks/
+         use-dashboard-data.ts
+      _lib/
+         queries.ts
+      page.tsx
+      layout.tsx
+```
+
+### Cross-page sharing
+
+**Do NOT import from one page's `_*` folders into another page.** Each page owns its internals. If two pages need the same thing:
+
+1. Duplicate and adapt first — premature abstraction is worse than duplication.
+2. Once it stabilizes into a shared primitive, **lift it** to a repo-root folder:
+   - Shared UI → `components/` (or `components/ui/` if it's a new primitive)
+   - Shared hook → `hooks/`
+   - Shared utility → `lib/`
+3. Then import via the root-level alias (`@/components/...`, `@/hooks/...`, `@/lib/...`).
+
+Sharing across `_components/` folders leads to prop bloat and coupled regressions when one page's needs evolve.
+
+For tiny routes (one-file `page.tsx` with no supporting code), skip private folders entirely. The architecture is a tool, not a mandate.
 
 ## Config you may need to flip
 

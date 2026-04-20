@@ -1,59 +1,82 @@
-# template
+# Next.js Starter (Feature-Based Architecture)
 
-Personal Next.js 16 starter template. App Router, React 19, Tailwind v4, shadcn/ui on Base UI primitives, TypeScript strict mode.
+A **modern, opinionated Next.js starter template** built for scalability and clarity.
 
-## Stack
+- ⚡ Next.js 16 (App Router)
+- ⚛️ React 19
+- 🎨 Tailwind CSS v4 (no config, CSS variables)
+- 🧩 shadcn/ui (Base UI primitives, not Radix)
+- 🧠 Feature-based architecture with private folders
+- 🧪 Vitest + React Testing Library
+- 🧹 ESLint + Prettier + Husky
 
-- **Next.js** 16 (App Router, Turbopack, `typedRoutes`)
-- **React** 19.2
-- **TypeScript** 6 (strict)
-- **Tailwind CSS** v4 (CSS-first config in `app/globals.css`, no `tailwind.config.*`)
-- **shadcn/ui** — `base-maia` style on **Base UI** primitives, `hugeicons` icon library
-- **next-themes** — class-based dark mode with a `d` hotkey to toggle
-- **ESLint** flat config + **Prettier** (3-space tabs, no semis, double quotes, import sorting)
-- **Husky** + **lint-staged** pre-commit hook
-- **Vitest** + **React Testing Library** (jsdom)
-- **PWA** (optional) — manifest, service worker, install prompt
+---
 
-## Getting started
+## Philosophy
+
+This starter is designed around a **feature-first architecture**:
+
+- Routes **own their logic**
+- Shared code is **intentional, not accidental**
+- UI primitives are **standardized**
+- Styling is **token-driven**
+
+> Duplication is cheaper than the wrong abstraction.
+
+---
+
+## Tech Stack
+
+- **Framework:** Next.js 16
+- **UI:** React 19
+- **Styling:** Tailwind CSS v4 + CSS variables
+- **Components:** shadcn/ui (Base UI)
+- **State (optional):** Zustand
+- **Data Fetching (optional):** TanStack Query
+- **Testing:** Vitest + React Testing Library
+- **Linting/Formatting:** ESLint + Prettier
+
+---
+
+## Getting Started
+
+### 1. Clone the template
+
+```bash
+git clone https://github.com/Jonvry/nextjs-baseui-template.git
+cd nextjs-baseui-template
+```
+
+### 2. Install dependencies
 
 ```bash
 pnpm install
+```
+
+### 3. Run development server
+
+```bash
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+App runs at: http://localhost:3000
 
-Copy `.env.example` to `.env.local` and fill in values:
+---
 
-```bash
-cp .env.example .env.local
-```
-
-## Scripts
-
-| Command           | What it does                    |
-| ----------------- | ------------------------------- |
-| `pnpm dev`        | Start dev server with Turbopack |
-| `pnpm build`      | Production build                |
-| `pnpm start`      | Run the production build        |
-| `pnpm lint`       | ESLint                          |
-| `pnpm typecheck`  | `tsc --noEmit`                  |
-| `pnpm format`     | Prettier write for `.ts`/`.tsx` |
-| `pnpm test`       | Vitest (one-shot)               |
-| `pnpm test:watch` | Vitest in watch mode            |
-
-## Installing shadcn components
-
-Install only the components you need — the template ships with just `Button`.
+## Available Scripts
 
 ```bash
-pnpm dlx shadcn@latest add dialog
-pnpm dlx shadcn@latest add input
-pnpm dlx shadcn@latest add dropdown-menu
+pnpm dev          # start dev server (turbopack)
+pnpm build        # production build
+pnpm start        # run production server
+pnpm lint         # eslint
+pnpm typecheck    # typescript check
+pnpm format       # prettier
+pnpm test         # run tests
+pnpm test:watch   # watch mode
 ```
 
-Configured in `components.json` (`style: base-maia`, `baseColor: taupe`, `iconLibrary: hugeicons`).
+---
 
 ## Project structure
 
@@ -68,135 +91,184 @@ public/              Static assets served at /
 proxy.ts             Next 16 middleware entry point
 ```
 
-Path alias: `@/*` → repo root (no `src/` directory).
+---
 
-> Keep this block in sync with the filesystem — if a top-level folder is added, renamed, or removed, update this list and the mirrored one in `CLAUDE.md` in the same commit.
+## Feature-Based Architecture (Private Folders)
 
-## Conventions
+Each route can contain **private folders** (prefixed with `_`):
 
-### Naming
+```
+app/(example)/
+  _components/
+  _hooks/
+  _stores/
+  _utils/
+  _constants/
+  _lib/
+  page.tsx
+```
 
-| Kind       | Style        | Example             |
-| ---------- | ------------ | ------------------- |
-| Variables  | `camelCase`  | `userName`          |
-| Functions  | `camelCase`  | `getUserById()`     |
-| Components | `PascalCase` | `UserCard`          |
-| Files      | `kebab-case` | `user-card.tsx`     |
-| Constants  | `UPPER_CASE` | `MOBILE_BREAKPOINT` |
+### Rules
 
-Component files use `kebab-case` filenames and `PascalCase` exports (`user-card.tsx` → `export function UserCard`).
+- Private folders are **NOT routes**
+- They are **scoped to the feature**
+- Do NOT import across routes
+- Extract to shared folders if reused
 
-### Exports
+---
 
-Prefer named `export` over `export default`. Only use `export default` where the framework requires it — Next.js route files (`page.tsx`, `layout.tsx`, `not-found.tsx`, `global-error.tsx`, `robots.ts`, `sitemap.ts`, etc.).
+## Where Should Code Go?
 
-```ts
-// ✅ preferred
-export function UserCard() {
-   /* ... */
-}
+| Use Case             | Location            |
+| -------------------- | ------------------- |
+| Shared UI            | `components/`       |
+| Route-specific UI    | `_components/`      |
+| Reusable hooks       | `hooks/`            |
+| Route-specific hooks | `_hooks/`           |
+| Utilities            | `lib/` or `_utils/` |
+| Business logic       | `_lib/`             |
+| Global providers     | `context/`          |
 
-// ✅ only in Next.js route files
-export default function Page() {
-   /* ... */
+---
+
+## Styling (Tailwind v4)
+
+- No `tailwind.config.*`
+- Uses CSS variables inside `app/globals.css`
+
+```css
+:root {
+   --color-primary: oklch(...);
 }
 ```
 
-### Optional providers
+### Dark Mode
 
-`context/` may contain provider stubs that ship fully commented out. Example: `context/query-provider.tsx` for TanStack Query. To enable, install the deps and uncomment:
+- Controlled via `.dark` class
+- Managed by `next-themes`
+
+---
+
+## UI Components
+
+- Built with **shadcn/ui on Base UI**
+- Config defined in `components.json`
+
+### Add components on demand
 
 ```bash
-pnpm add @tanstack/react-query @tanstack/react-query-devtools
+pnpm dlx shadcn@latest add button
 ```
 
-Then wrap the tree in `app/layout.tsx`. Providers with no extra deps just need uncommenting.
+Do NOT install all components at once  
+Do NOT introduce Radix UI
 
-### Imports
-
-Type imports must be a separate statement:
-
-```ts
-import type { Metadata } from "next"
-import { cn } from "@/lib/utils"
-```
-
-Prettier's import-sort plugin orders them: `server-only` → `react` → `next*` → third-party → `@/*` → relative. Let the formatter handle it.
-
-### Theming
-
-Add tokens in `app/globals.css` — define the CSS variable in `:root` and `.dark`, then expose it under `@theme inline`. Don't create a `tailwind.config.*`.
-
-### Middleware
-
-The middleware file is `proxy.ts` (Next 16 rename). The exported function is `proxy()`.
+---
 
 ## Testing
 
-Vitest + React Testing Library + jsdom. Tests colocate with the file they cover — e.g. `hooks/use-mobile.text.ts` next to `use-mobile.ts`.
+- Vitest + React Testing Library
+- Tests colocated with source files
 
-```ts
-import { act, renderHook } from "@testing-library/react"
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
-import { useIsMobile } from "./use-mobile"
-
-describe("useIsMobile", () => {
-   const listeners = new Set<() => void>()
-   const originalMatchMedia = window.matchMedia
-
-   function setViewport(width: number) {
-      Object.defineProperty(window, "innerWidth", {
-         value: width,
-         writable: true,
-         configurable: true,
-      })
-      act(() => {
-         listeners.forEach((fn) => fn())
-      })
-   }
-
-   beforeEach(() => {
-      listeners.clear()
-      window.matchMedia = vi.fn((query: string) => ({
-         matches: window.innerWidth < 768,
-         media: query,
-         onchange: null,
-         addEventListener: (_: string, fn: () => void) => listeners.add(fn),
-         removeEventListener: (_: string, fn: () => void) => listeners.delete(fn),
-         addListener: vi.fn(),
-         removeListener: vi.fn(),
-         dispatchEvent: vi.fn(),
-      })) as unknown as typeof window.matchMedia
-   })
-
-   afterEach(() => {
-      window.matchMedia = originalMatchMedia
-   })
-
-   it("returns true when the viewport is narrower than 768px", () => {
-      setViewport(500)
-      const { result } = renderHook(() => useIsMobile())
-      expect(result.current).toBe(true)
-   })
-
-   it("returns false when the viewport is 768px or wider", () => {
-      setViewport(1024)
-      const { result } = renderHook(() => useIsMobile())
-      expect(result.current).toBe(false)
-   })
-
-   it("updates when the viewport crosses the breakpoint", () => {
-      setViewport(1024)
-      const { result } = renderHook(() => useIsMobile())
-      expect(result.current).toBe(false)
-
-      setViewport(500)
-      expect(result.current).toBe(true)
-   })
-})
+```
+use-mobile.ts
+use-mobile.test.ts
 ```
 
-Server Components can't be rendered by RTL. Keep logic in plain async functions and unit-test those; cover SSR/streaming with E2E (not configured in this template).
+### Notes
+
+- Do NOT test Server Components with RTL
+- Test logic separately
+- Use E2E for SSR (not included)
+
+---
+
+## Naming Conventions
+
+| Type       | Format     |
+| ---------- | ---------- |
+| Variables  | camelCase  |
+| Functions  | camelCase  |
+| Components | PascalCase |
+| Files      | kebab-case |
+| Constants  | UPPER_CASE |
+
+---
+
+## Exports
+
+```ts
+// ✅ Preferred
+export function Component() {}
+
+// ❌ Avoid
+export default function Component() {}
+```
+
+Only use `export default` for Next.js route files.
+
+---
+
+## Imports
+
+Use type-only imports:
+
+```ts
+import type { User } from "@/types"
+```
+
+Import order is handled automatically by Prettier.
+
+---
+
+## Environment Variables
+
+- Strongly typed via Next.js config
+- Add new variables to:
+
+```
+.env.example
+```
+
+---
+
+## Next.js Notes
+
+- Middleware file is `proxy.ts` (NOT `middleware.ts`)
+- Must export `proxy()`
+
+---
+
+## Path Aliases
+
+```
+@/* → project root
+```
+
+Example:
+
+```ts
+import { Button } from "@/components/ui/button"
+```
+
+---
+
+## Providers
+
+Located in `context/`
+
+- Optional providers are **commented out**
+- Enable by installing deps and uncommenting
+
+### Theme Provider
+
+Includes:
+
+- Theme switching
+- `<meta name="theme-color">` sync
+- `d` keyboard shortcut
+
+---
 
 ## PWA (optional)
 
@@ -216,6 +288,35 @@ Then remove the two imports + JSX usages:
 
 If you keep the PWA, you **must** add real icon files at `public/icon-192x192.png` and `public/icon-512x512.png` — the manifest references them and Chrome won't treat the app as installable without valid icons.
 
-## Git hooks
+---
 
-`pnpm install` sets up Husky via the `prepare` script. Pre-commit runs `lint-staged`.
+## Git Hooks
+
+- Husky + lint-staged
+
+If it fails:
+
+- Add lint-staged config
+- Do NOT bypass with `--no-verify`
+
+---
+
+## Common Mistakes
+
+- Importing from another route’s `_components`
+- Over-abstracting too early
+- Adding unnecessary global state
+- Introducing new UI libraries
+- Breaking naming/export rules
+
+---
+
+## Maintenance
+
+When updating structure:
+
+- Update:
+   - `README.md`
+   - `CLAUDE.md`
+
+Keep documentation in sync with the codebase.
