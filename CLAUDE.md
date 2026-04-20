@@ -15,6 +15,8 @@ pnpm start        # production server
 pnpm lint         # eslint (flat config)
 pnpm typecheck    # tsc --noEmit
 pnpm format       # prettier --write "**/*.{ts,tsx}"
+pnpm test         # vitest run
+pnpm test:watch   # vitest (watch mode)
 ```
 
 Install a shadcn component on demand — do **not** pre-install the full set:
@@ -23,7 +25,7 @@ Install a shadcn component on demand — do **not** pre-install the full set:
 pnpm dlx shadcn@latest add dialog
 ```
 
-There is no test runner configured.
+**Testing.** Vitest + React Testing Library + jsdom. Config in `vitest.config.ts`, matchers set up in `vitest.setup.ts` (`@testing-library/jest-dom/vitest`). Tests colocate with the file under test — e.g. `components/ui/button.test.tsx` next to `button.tsx`. The `@/*` alias is mirrored in `vitest.config.ts` via `resolve.alias`. Server Components can't be rendered by RTL; unit-test pure logic and cover SSR behavior with E2E (not configured here).
 
 ## Naming conventions
 
