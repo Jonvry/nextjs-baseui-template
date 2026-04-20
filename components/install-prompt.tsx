@@ -9,17 +9,17 @@ type BeforeInstallPromptEvent = Event & {
 
 export function InstallPrompt() {
    const [deferred, setDeferred] = useState<BeforeInstallPromptEvent | null>(null)
-   const [isIOS, setIsIOS] = useState(false)
-   const [isStandalone, setIsStandalone] = useState(false)
+
+   const isIOS = typeof window !== "undefined" && /iPad|iPhone|iPod/.test(navigator.userAgent)
+   const isStandalone =
+      typeof window !== "undefined" && window.matchMedia("(display-mode: standalone)").matches
 
    useEffect(() => {
-      setIsIOS(/iPad|iPhone|iPod/.test(navigator.userAgent))
-      setIsStandalone(window.matchMedia("(display-mode: standalone)").matches)
-
       const onPrompt = (e: Event) => {
          e.preventDefault()
          setDeferred(e as BeforeInstallPromptEvent)
       }
+
       window.addEventListener("beforeinstallprompt", onPrompt)
       return () => window.removeEventListener("beforeinstallprompt", onPrompt)
    }, [])
@@ -37,6 +37,7 @@ export function InstallPrompt() {
    return (
       <div className="rounded-md border p-4">
          <h3 className="font-medium">Install App</h3>
+
          {deferred && (
             <button
                className="bg-primary text-primary-foreground mt-2 rounded px-3 py-1"
@@ -45,6 +46,7 @@ export function InstallPrompt() {
                Install
             </button>
          )}
+
          {isIOS && (
             <p className="text-muted-foreground mt-2 text-sm">
                Tap the share button and then &quot;Add to Home Screen&quot;.
