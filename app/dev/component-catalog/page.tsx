@@ -1,5 +1,5 @@
+// import { notFound } from "next/navigation"
 import type { Metadata } from "next"
-import { notFound } from "next/navigation"
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { CatalogSidebar } from "./_components/catalog-sidebar"
 import { COMPONENT_REGISTRY, resolveSlug } from "./_lib/registry"
@@ -13,9 +13,10 @@ export default async function Page({
 }: {
    searchParams: Promise<{ component?: string }>
 }) {
-   if (process.env.NODE_ENV === "production") {
-      return notFound()
-   }
+   // This page is only meant for development purposes, so we can hide it in production builds.
+   // if (process.env.NODE_ENV === "production") {
+   //    return notFound()
+   // }
 
    const { component } = await searchParams
    const activeSlug = component ? resolveSlug(component) : null
