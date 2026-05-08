@@ -38,8 +38,24 @@ function DrawerOverlay({ className, ...props }: DrawerPrimitive.Backdrop.Props) 
    )
 }
 
+function DrawerBackdrop({ ...props }: DrawerPrimitive.Backdrop.Props) {
+   return <DrawerPrimitive.Backdrop data-slot="drawer-backdrop" {...props} />
+}
+
 function DrawerSwipeArea({ ...props }: DrawerPrimitive.SwipeArea.Props) {
    return <DrawerPrimitive.SwipeArea data-slot="drawer-swipe-area" {...props} />
+}
+
+function DrawerViewport({ ...props }: DrawerPrimitive.Viewport.Props) {
+   return <DrawerPrimitive.Viewport data-slot="drawer-viewport" {...props} />
+}
+
+function DrawerPopup({ ...props }: DrawerPrimitive.Popup.Props) {
+   return <DrawerPrimitive.Popup data-slot="drawer-popup" {...props} />
+}
+
+function DrawerInnerContent({ ...props }: DrawerPrimitive.Content.Props) {
+   return <DrawerPrimitive.Content data-slot="drawer-inner-content" {...props} />
 }
 
 function DrawerContent({
@@ -176,6 +192,7 @@ function DrawerIndentBackground({ className, ...props }: DrawerPrimitive.IndentB
 
 export {
    Drawer,
+   DrawerBackdrop,
    DrawerClose,
    DrawerContent,
    DrawerDescription,
@@ -183,10 +200,13 @@ export {
    DrawerHeader,
    DrawerIndent,
    DrawerIndentBackground,
+   DrawerInnerContent,
    DrawerOverlay,
+   DrawerPopup,
    DrawerPortal,
    DrawerProvider,
    DrawerSwipeArea,
    DrawerTitle,
    DrawerTrigger,
+   DrawerViewport,
 }

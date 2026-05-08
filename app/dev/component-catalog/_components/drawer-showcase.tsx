@@ -1,18 +1,20 @@
 "use client"
 
-import { Drawer as DrawerPrimitive } from "@base-ui/react/drawer"
 import { Button } from "@/components/ui/button"
 import {
    Drawer,
+   DrawerBackdrop,
    DrawerClose,
    DrawerContent,
    DrawerDescription,
    DrawerFooter,
    DrawerHeader,
-   DrawerOverlay,
+   DrawerInnerContent,
+   DrawerPopup,
    DrawerPortal,
    DrawerTitle,
    DrawerTrigger,
+   DrawerViewport,
 } from "@/components/ui/drawer"
 import { Input } from "@/components/ui/input"
 import { ShowcaseRow } from "./showcase-row"
@@ -130,61 +132,59 @@ export function DrawerShowcase() {
             <Drawer>
                <DrawerTrigger render={<Button variant="outline">Open action sheet</Button>} />
                <DrawerPortal>
-                  <DrawerOverlay />
-                  <DrawerPrimitive.Viewport
-                     data-slot="drawer-viewport"
-                     className="fixed inset-0 z-50 flex flex-col items-center justify-end p-3"
-                  >
-                     <DrawerPrimitive.Popup
-                        data-slot="drawer-content"
+                  <DrawerBackdrop className="fixed inset-0 z-50 bg-black opacity-[calc(0.4*(1-var(--drawer-swipe-progress)))] transition-opacity duration-450 ease-[cubic-bezier(0.32,0.72,0,1)] data-starting-style:opacity-0 data-ending-style:opacity-0 data-ending-style:duration-[calc(var(--drawer-swipe-strength)*0.4s)] data-swiping:duration-0 dark:opacity-[calc(0.7*(1-var(--drawer-swipe-progress)))]" />
+                  <DrawerViewport className="fixed inset-0 z-50 flex flex-col items-end justify-end">
+                     <DrawerPopup
                         data-side="bottom"
-                        className="flex w-full max-w-md flex-col gap-3 outline-none transition-transform duration-300 ease-out data-starting-style:translate-y-[110%] data-ending-style:translate-y-[110%]"
+                        style={{ transform: "translateY(var(--drawer-swipe-movement-y))" }}
+                        className="pointer-events-none box-border mx-auto flex w-full max-w-md flex-col gap-3 px-4 pb-[calc(1rem+env(safe-area-inset-bottom,0))] outline-none transition-transform duration-450 ease-[cubic-bezier(0.32,0.72,0,1)] will-change-transform data-starting-style:translate-y-[calc(100%+1rem+2px)]! data-ending-style:translate-y-[calc(100%+1rem+2px)]! data-ending-style:duration-[calc(var(--drawer-swipe-strength)*0.4s)] data-swiping:select-none"
                      >
-                        <DrawerPrimitive.Content className="bg-popover text-popover-foreground rounded-3xl shadow-lg ring-1 ring-foreground/5">
-                           <DrawerPrimitive.Title className="sr-only">
-                              Profile actions
-                           </DrawerPrimitive.Title>
-                           <DrawerPrimitive.Description className="sr-only">
+                        <DrawerInnerContent className="bg-popover text-popover-foreground pointer-events-auto overflow-hidden rounded-2xl outline outline-border">
+                           <DrawerTitle className="sr-only">Profile actions</DrawerTitle>
+                           <DrawerDescription className="sr-only">
                               Choose an action for this user.
-                           </DrawerPrimitive.Description>
+                           </DrawerDescription>
 
-                           <ul aria-label="Profile actions" className="divide-y divide-border">
+                           <ul aria-label="Profile actions" className="m-0 list-none p-0">
                               {PROFILE_ACTIONS.map((action, index) => (
-                                 <li key={action}>
+                                 <li
+                                    key={action}
+                                    className={index !== 0 ? "border-t border-border" : undefined}
+                                 >
                                     {index === 0 && (
-                                       <DrawerPrimitive.Close className="sr-only">
+                                       <DrawerClose className="sr-only">
                                           Close action sheet
-                                       </DrawerPrimitive.Close>
+                                       </DrawerClose>
                                     )}
-                                    <DrawerPrimitive.Close
+                                    <DrawerClose
                                        render={
                                           <button
                                              type="button"
-                                             className="text-foreground hover:bg-muted w-full px-4 py-3.5 text-center text-base transition-colors"
+                                             className="text-foreground hover:bg-muted focus-visible:bg-muted w-full px-5 py-4 text-center text-base outline-none transition-colors"
                                           />
                                        }
                                     >
                                        {action}
-                                    </DrawerPrimitive.Close>
+                                    </DrawerClose>
                                  </li>
                               ))}
                            </ul>
-                        </DrawerPrimitive.Content>
+                        </DrawerInnerContent>
 
-                        <div className="bg-popover rounded-3xl shadow-lg ring-1 ring-foreground/5">
-                           <DrawerPrimitive.Close
+                        <div className="bg-popover pointer-events-auto overflow-hidden rounded-2xl outline outline-border">
+                           <DrawerClose
                               render={
                                  <button
                                     type="button"
-                                    className="text-destructive hover:bg-destructive/10 w-full rounded-3xl px-4 py-3.5 text-center text-base font-medium transition-colors"
+                                    className="text-destructive hover:bg-muted focus-visible:bg-muted w-full px-5 py-4 text-center text-base outline-none transition-colors"
                                  />
                               }
                            >
                               Block User
-                           </DrawerPrimitive.Close>
+                           </DrawerClose>
                         </div>
-                     </DrawerPrimitive.Popup>
-                  </DrawerPrimitive.Viewport>
+                     </DrawerPopup>
+                  </DrawerViewport>
                </DrawerPortal>
             </Drawer>
          </ShowcaseRow>
