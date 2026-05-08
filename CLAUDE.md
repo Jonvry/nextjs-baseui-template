@@ -39,6 +39,22 @@ pnpm dlx shadcn@latest add <component>
 
 **Prefer named `export` over `export default`.** Only use `export default` when the framework requires it — i.e. Next.js route files (`page.tsx`, `layout.tsx`, `not-found.tsx`, `global-error.tsx`, `robots.ts`, `sitemap.ts`, `loading.tsx`, `error.tsx`). For everything else (components, hooks, utils, providers), use named exports so imports stay consistent and rename-refactors are safe.
 
+## Coding style
+
+- **Prefer `function` declarations over arrow functions** for top-level/named functions (components, hooks, utils). Use arrow functions for inline callbacks (`.map`, `.filter`, event handlers), React hook callbacks (`useCallback`, `useMemo`, `useEffect`), and when you need lexical `this`. Enforced by ESLint (`func-style` + `prefer-arrow-callback`).
+
+```ts
+// Good
+export function UserCard({ name }: Props) {
+   return <div>{name}</div>
+}
+
+// Avoid
+export const UserCard = ({ name }: Props) => {
+   return <div>{name}</div>
+}
+```
+
 ## Architecture notes that require reading multiple files
 
 **shadcn/ui on Base UI, not Radix.** `components.json` is set to `style: "base-maia"` with `iconLibrary: "hugeicons"`. `components/ui/button.tsx` imports from `@base-ui/react/button` (not `@radix-ui/*`). When adding or modifying UI primitives, stay on Base UI — don't introduce Radix.

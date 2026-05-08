@@ -15,7 +15,7 @@ export function InstallPrompt() {
       typeof window !== "undefined" && window.matchMedia("(display-mode: standalone)").matches
 
    useEffect(() => {
-      const onPrompt = (e: Event) => {
+      function onPrompt(e: Event) {
          e.preventDefault()
          setDeferred(e as BeforeInstallPromptEvent)
       }

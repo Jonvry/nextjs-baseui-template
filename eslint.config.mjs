@@ -32,6 +32,7 @@ const eslintConfig = defineConfig([
 
       rules: {
          // Code style
+         "func-style": ["warn", "declaration", { allowArrowFunctions: false }],
          "prefer-arrow-callback": ["warn"],
          "prefer-template": ["warn"],
 
