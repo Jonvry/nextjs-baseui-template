@@ -1,3 +1,5 @@
+import { ArrowRight01Icon, Cancel01Icon, Download04Icon } from "@hugeicons/core-free-icons"
+import { HugeiconsIcon } from "@hugeicons/react"
 import { Button } from "@/components/ui/button"
 import { ShowcaseRow } from "./showcase-row"
 import { ShowcaseSection } from "./showcase-section"
@@ -28,6 +30,20 @@ export function ButtonShowcase() {
             <Button>Enabled</Button>
             <Button disabled>Disabled</Button>
             <Button aria-invalid>Invalid</Button>
+         </ShowcaseRow>
+
+         <ShowcaseRow label="With icon">
+            <Button>
+               <HugeiconsIcon icon={Download04Icon} data-icon="inline-start" strokeWidth={2} />
+               Download
+            </Button>
+            <Button variant="outline">
+               Continue
+               <HugeiconsIcon icon={ArrowRight01Icon} data-icon="inline-end" strokeWidth={2} />
+            </Button>
+            <Button variant="ghost" size="icon" aria-label="Close">
+               <HugeiconsIcon icon={Cancel01Icon} strokeWidth={2} />
+            </Button>
          </ShowcaseRow>
       </ShowcaseSection>
    )
