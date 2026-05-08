@@ -11,7 +11,7 @@ const figtree = Figtree({ subsets: ["latin"], variable: "--font-sans" })
 const SITE_NAME = "Site Name"
 const SITE_DESCRIPTION =
    "Site description goes here. It should be a concise and compelling summary of what the site is about, ideally around 150-160 characters for optimal display in search engine results and social media previews."
-const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"
+const SITE_URL = process.env.NEXT_PUBLIC_APP_URL as string
 const SITE_IMAGE = `${SITE_URL}/opengraph-image.jpeg`
 
 export const viewport: Viewport = {
