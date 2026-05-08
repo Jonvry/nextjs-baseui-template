@@ -10,7 +10,7 @@ export function ShowcaseSection({ title, description, children }: ShowcaseSectio
    return (
       <section className="space-y-4">
          <header className="space-y-1">
-            <h2 className="text-foreground text-xl font-semibold">{title}</h2>
+            <h2 className="text-xl font-semibold text-foreground">{title}</h2>
             {description && <p>{description}</p>}
          </header>
 

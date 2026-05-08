@@ -13,7 +13,7 @@ export default function GlobalError({
       <html>
          <body className="grid min-h-dvh place-items-center">
             <section>
-               <h2 className="text-foreground text-2xl font-semibold">Something went wrong!</h2>
+               <h2 className="text-2xl font-semibold text-foreground">Something went wrong!</h2>
                <Button onClick={() => reset()}>Try again</Button>
             </section>
          </body>

@@ -25,7 +25,7 @@ export function CatalogSidebar({ activeSlug }: CatalogSidebarProps) {
    return (
       <Sidebar>
          <SidebarHeader>
-            <div className="text-foreground px-2 py-1 font-semibold">Component catalog</div>
+            <div className="px-2 py-1 font-semibold text-foreground">Component catalog</div>
          </SidebarHeader>
 
          <SidebarContent>

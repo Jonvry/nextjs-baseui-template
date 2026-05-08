@@ -80,11 +80,11 @@ function DrawerContent({
                data-slot="drawer-content"
                data-side={side}
                className={cn(
-                  "group/drawer-content fixed z-50 flex flex-col bg-popover text-popover-foreground shadow-lg outline-none transition-transform duration-300 ease-out",
-                  "data-[side=bottom]:inset-x-0 data-[side=bottom]:bottom-0 data-[side=bottom]:max-h-[85vh] data-[side=bottom]:rounded-t-4xl data-[side=bottom]:border-t data-[side=bottom]:data-starting-style:translate-y-full data-[side=bottom]:data-ending-style:translate-y-full",
-                  "data-[side=top]:inset-x-0 data-[side=top]:top-0 data-[side=top]:max-h-[85vh] data-[side=top]:rounded-b-4xl data-[side=top]:border-b data-[side=top]:data-starting-style:-translate-y-full data-[side=top]:data-ending-style:-translate-y-full",
-                  "data-[side=left]:inset-y-0 data-[side=left]:left-0 data-[side=left]:h-full data-[side=left]:w-3/4 data-[side=left]:rounded-r-4xl data-[side=left]:border-r data-[side=left]:data-starting-style:-translate-x-full data-[side=left]:data-ending-style:-translate-x-full sm:data-[side=left]:max-w-sm",
-                  "data-[side=right]:inset-y-0 data-[side=right]:right-0 data-[side=right]:h-full data-[side=right]:w-3/4 data-[side=right]:rounded-l-4xl data-[side=right]:border-l data-[side=right]:data-starting-style:translate-x-full data-[side=right]:data-ending-style:translate-x-full sm:data-[side=right]:max-w-sm",
+                  "group/drawer-content fixed z-50 flex flex-col bg-popover text-popover-foreground shadow-lg transition-transform duration-300 ease-out outline-none",
+                  "data-[side=bottom]:inset-x-0 data-[side=bottom]:bottom-0 data-[side=bottom]:max-h-[85vh] data-[side=bottom]:rounded-t-4xl data-[side=bottom]:border-t data-[side=bottom]:data-ending-style:translate-y-full data-[side=bottom]:data-starting-style:translate-y-full",
+                  "data-[side=top]:inset-x-0 data-[side=top]:top-0 data-[side=top]:max-h-[85vh] data-[side=top]:rounded-b-4xl data-[side=top]:border-b data-[side=top]:data-ending-style:-translate-y-full data-[side=top]:data-starting-style:-translate-y-full",
+                  "data-[side=left]:inset-y-0 data-[side=left]:left-0 data-[side=left]:h-full data-[side=left]:w-3/4 data-[side=left]:rounded-r-4xl data-[side=left]:border-r data-[side=left]:data-ending-style:-translate-x-full data-[side=left]:data-starting-style:-translate-x-full sm:data-[side=left]:max-w-sm",
+                  "data-[side=right]:inset-y-0 data-[side=right]:right-0 data-[side=right]:h-full data-[side=right]:w-3/4 data-[side=right]:rounded-l-4xl data-[side=right]:border-l data-[side=right]:data-ending-style:translate-x-full data-[side=right]:data-starting-style:translate-x-full sm:data-[side=right]:max-w-sm",
                   className
                )}
                {...props}
@@ -92,7 +92,7 @@ function DrawerContent({
                {renderHandle && (
                   <div
                      aria-hidden
-                     className="bg-muted mx-auto mt-3 h-1.5 w-12 shrink-0 rounded-full"
+                     className="mx-auto mt-3 h-1.5 w-12 shrink-0 rounded-full bg-muted"
                   />
                )}
 
@@ -147,7 +147,7 @@ function DrawerTitle({ className, ...props }: DrawerPrimitive.Title.Props) {
    return (
       <DrawerPrimitive.Title
          data-slot="drawer-title"
-         className={cn("text-foreground font-heading text-base font-medium", className)}
+         className={cn("font-heading text-base font-medium text-foreground", className)}
          {...props}
       />
    )
@@ -157,7 +157,7 @@ function DrawerDescription({ className, ...props }: DrawerPrimitive.Description.
    return (
       <DrawerPrimitive.Description
          data-slot="drawer-description"
-         className={cn("text-muted-foreground text-sm", className)}
+         className={cn("text-sm text-muted-foreground", className)}
          {...props}
       />
    )
@@ -184,7 +184,7 @@ function DrawerIndentBackground({ className, ...props }: DrawerPrimitive.IndentB
    return (
       <DrawerPrimitive.IndentBackground
          data-slot="drawer-indent-background"
-         className={cn("bg-background fixed inset-0 -z-10", className)}
+         className={cn("fixed inset-0 -z-10 bg-background", className)}
          {...props}
       />
    )

@@ -39,7 +39,7 @@ export function InstallPrompt() {
 
          {deferred && (
             <button
-               className="bg-primary text-primary-foreground mt-2 rounded px-3 py-1"
+               className="mt-2 rounded bg-primary px-3 py-1 text-primary-foreground"
                onClick={handleInstall}
             >
                Install
@@ -47,7 +47,7 @@ export function InstallPrompt() {
          )}
 
          {isIOS && (
-            <p className="text-muted-foreground mt-2 text-sm">
+            <p className="mt-2 text-sm text-muted-foreground">
                Tap the share button and then &quot;Add to Home Screen&quot;.
             </p>
          )}

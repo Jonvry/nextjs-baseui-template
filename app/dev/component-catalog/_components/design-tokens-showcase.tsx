@@ -87,7 +87,7 @@ export function DesignTokensShowcase() {
          >
             {COLOR_GROUPS.map((group) => (
                <div key={group.label} className="space-y-3">
-                  <h3 className="text-foreground text-sm font-medium">{group.label}</h3>
+                  <h3 className="text-sm font-medium text-foreground">{group.label}</h3>
                   <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
                      {group.tokens.map((token) => (
                         <div
@@ -98,7 +98,7 @@ export function DesignTokensShowcase() {
                               className={`size-12 shrink-0 rounded border ${token.className}`}
                               aria-hidden
                            />
-                           <code className="text-foreground text-xs">{token.name}</code>
+                           <code className="text-xs text-foreground">{token.name}</code>
                         </div>
                      ))}
                   </div>
@@ -114,9 +114,9 @@ export function DesignTokensShowcase() {
                {RADII.map((r) => (
                   <div key={r.name} className="space-y-2">
                      <div
-                        className={`bg-primary/20 border-primary/40 size-16 border ${r.className}`}
+                        className={`size-16 border border-primary/40 bg-primary/20 ${r.className}`}
                      />
-                     <code className="text-foreground text-xs">{r.name}</code>
+                     <code className="text-xs text-foreground">{r.name}</code>
                   </div>
                ))}
             </div>
@@ -127,7 +127,7 @@ export function DesignTokensShowcase() {
             description="Sans font is bound to --font-sans. Body defaults to text-sm + text-muted-foreground."
          >
             <div className="space-y-3">
-               <h3 className="text-foreground text-sm font-medium">Size scale</h3>
+               <h3 className="text-sm font-medium text-foreground">Size scale</h3>
                <div className="space-y-2">
                   {TYPE_SCALE.map((t) => (
                      <div key={t.name} className="flex items-baseline gap-4">
@@ -141,12 +141,12 @@ export function DesignTokensShowcase() {
             </div>
 
             <div className="space-y-3">
-               <h3 className="text-foreground text-sm font-medium">Weights</h3>
+               <h3 className="text-sm font-medium text-foreground">Weights</h3>
                <div className="space-y-2">
                   {FONT_WEIGHTS.map((w) => (
                      <div key={w.name} className="flex items-baseline gap-4">
                         <code className="w-32 shrink-0 text-xs">font-{w.name}</code>
-                        <span className={`text-foreground text-base ${w.className}`}>
+                        <span className={`text-base text-foreground ${w.className}`}>
                            The quick brown fox
                         </span>
                      </div>

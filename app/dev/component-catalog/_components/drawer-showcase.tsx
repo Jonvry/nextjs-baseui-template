@@ -132,14 +132,14 @@ export function DrawerShowcase() {
             <Drawer>
                <DrawerTrigger render={<Button variant="outline">Open action sheet</Button>} />
                <DrawerPortal>
-                  <DrawerBackdrop className="fixed inset-0 z-50 bg-black opacity-[calc(0.4*(1-var(--drawer-swipe-progress)))] transition-opacity duration-450 ease-[cubic-bezier(0.32,0.72,0,1)] data-starting-style:opacity-0 data-ending-style:opacity-0 data-ending-style:duration-[calc(var(--drawer-swipe-strength)*0.4s)] data-swiping:duration-0 dark:opacity-[calc(0.7*(1-var(--drawer-swipe-progress)))]" />
+                  <DrawerBackdrop className="fixed inset-0 z-50 bg-black opacity-[calc(0.4*(1-var(--drawer-swipe-progress)))] transition-opacity duration-450 ease-[cubic-bezier(0.32,0.72,0,1)] data-ending-style:opacity-0 data-ending-style:duration-[calc(var(--drawer-swipe-strength)*0.4s)] data-starting-style:opacity-0 data-swiping:duration-0 dark:opacity-[calc(0.7*(1-var(--drawer-swipe-progress)))]" />
                   <DrawerViewport className="fixed inset-0 z-50 flex flex-col items-end justify-end">
                      <DrawerPopup
                         data-side="bottom"
                         style={{ transform: "translateY(var(--drawer-swipe-movement-y))" }}
-                        className="pointer-events-none box-border mx-auto flex w-full max-w-md flex-col gap-3 px-4 pb-[calc(1rem+env(safe-area-inset-bottom,0))] outline-none transition-transform duration-450 ease-[cubic-bezier(0.32,0.72,0,1)] will-change-transform data-starting-style:translate-y-[calc(100%+1rem+2px)]! data-ending-style:translate-y-[calc(100%+1rem+2px)]! data-ending-style:duration-[calc(var(--drawer-swipe-strength)*0.4s)] data-swiping:select-none"
+                        className="pointer-events-none mx-auto box-border flex w-full max-w-md flex-col gap-3 px-4 pb-[calc(1rem+env(safe-area-inset-bottom,0))] transition-transform duration-450 ease-[cubic-bezier(0.32,0.72,0,1)] will-change-transform outline-none data-ending-style:translate-y-[calc(100%+1rem+2px)]! data-ending-style:duration-[calc(var(--drawer-swipe-strength)*0.4s)] data-starting-style:translate-y-[calc(100%+1rem+2px)]! data-swiping:select-none"
                      >
-                        <DrawerInnerContent className="bg-popover text-popover-foreground pointer-events-auto overflow-hidden rounded-2xl outline outline-border">
+                        <DrawerInnerContent className="pointer-events-auto overflow-hidden rounded-2xl bg-popover text-popover-foreground outline outline-border">
                            <DrawerTitle className="sr-only">Profile actions</DrawerTitle>
                            <DrawerDescription className="sr-only">
                               Choose an action for this user.
@@ -160,7 +160,7 @@ export function DrawerShowcase() {
                                        render={
                                           <button
                                              type="button"
-                                             className="text-foreground hover:bg-muted focus-visible:bg-muted w-full px-5 py-4 text-center text-base outline-none transition-colors"
+                                             className="w-full px-5 py-4 text-center text-base text-foreground transition-colors outline-none hover:bg-muted focus-visible:bg-muted"
                                           />
                                        }
                                     >
@@ -171,12 +171,12 @@ export function DrawerShowcase() {
                            </ul>
                         </DrawerInnerContent>
 
-                        <div className="bg-popover pointer-events-auto overflow-hidden rounded-2xl outline outline-border">
+                        <div className="pointer-events-auto overflow-hidden rounded-2xl bg-popover outline outline-border">
                            <DrawerClose
                               render={
                                  <button
                                     type="button"
-                                    className="text-destructive hover:bg-muted focus-visible:bg-muted w-full px-5 py-4 text-center text-base outline-none transition-colors"
+                                    className="w-full px-5 py-4 text-center text-base text-destructive transition-colors outline-none hover:bg-muted focus-visible:bg-muted"
                                  />
                               }
                            >

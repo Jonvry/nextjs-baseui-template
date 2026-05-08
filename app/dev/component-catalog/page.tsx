@@ -27,7 +27,7 @@ export default async function Page({
          <SidebarInset>
             <header className="flex h-14 items-center gap-3 border-b px-4">
                <SidebarTrigger />
-               <h1 className="text-foreground font-semibold">
+               <h1 className="font-semibold text-foreground">
                   {active ? active.label : "Component catalog"}
                </h1>
             </header>
@@ -36,15 +36,15 @@ export default async function Page({
                {active ? (
                   <active.Showcase />
                ) : (
-                  <header className="space-y-2 max-w-4xl">
-                     <p className="font-medium text-xs tracking-widest uppercase">Dev only</p>
-                     <h2 className="text-foreground text-3xl font-semibold">Component catalog</h2>
+                  <header className="max-w-4xl space-y-2">
+                     <p className="text-xs font-medium tracking-widest uppercase">Dev only</p>
+                     <h2 className="text-3xl font-semibold text-foreground">Component catalog</h2>
                      <p className="text-base">
                         Visual reference for installed UI primitives. Pick a component from the
                         sidebar to view its variants. Add a new showcase under&nbsp;
-                        <code className="bg-muted rounded px-1 py-0.5 text-xs">_components/</code>
+                        <code className="rounded bg-muted px-1 py-0.5 text-xs">_components/</code>
                         &nbsp; and register it in&nbsp;
-                        <code className="bg-muted rounded px-1 py-0.5 text-xs">
+                        <code className="rounded bg-muted px-1 py-0.5 text-xs">
                            _lib/registry.ts
                         </code>
                         &nbsp; when you install a new shadcn component.
