@@ -72,6 +72,20 @@ shadcn/ui is configured for Base UI in `components.json` with Hugeicons. Do not 
 
 `tsconfig.json` maps `@/*` to the repository root. There is no `src/` directory.
 
+## UI, Styling, and Form Rules
+
+Use design tokens and Tailwind theme classes instead of hardcoded colors, spacing, shadows, or inline styles. Add reusable tokens in `app/globals.css` under `:root`, `.dark`, and `@theme inline`.
+
+Never use gradients unless explicitly requested. Never use purple gradients or multicolor gradients. Do not use glow effects as primary affordances. Use the Tailwind CSS default shadow scale unless a custom shadow is explicitly requested. Prefer existing theme or Tailwind CSS color tokens before introducing new ones, and limit accent color usage to one accent per view.
+
+Empty states must provide one clear next action.
+
+Forms must use semantic HTML and accessible field wiring. Every input needs a visible `<label htmlFor="...">`, matching `id` and `name`, appropriate `type`, and `autoComplete` when applicable. Add validation attributes such as `required`, `minLength`, `maxLength`, `min`, `max`, or `pattern` when constraints are known. Use placeholders only as examples, not labels.
+
+Use `aria-describedby` for help and error text, and make sure every referenced value has a matching `id`, such as `aria-describedby="password-minlength"` with `id="password-minlength"`. Set `aria-invalid` when a field has an error.
+
+Use `inputMode` when it improves mobile keyboard behavior without changing field semantics. OTPs, card numbers, ZIP codes, and numeric strings that may contain leading zeros should usually use `type="text"` with `inputMode="numeric"`; reserve `type="number"` for true numeric values used for arithmetic or range validation.
+
 ## Metadata, Providers, and Configuration
 
 `app/layout.tsx` defines `SITE_NAME`, `SITE_DESCRIPTION`, and `SITE_URL` from `NEXT_PUBLIC_BASE_URL`; keep metadata, viewport, Open Graph, and Twitter values aligned. When customizing a real site, update `app/robots.ts`, `app/sitemap.ts`, and the OG image reference if needed.
