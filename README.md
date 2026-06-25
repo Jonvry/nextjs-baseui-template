@@ -103,7 +103,7 @@ app/(example)/
   _hooks/
   _stores/
   _utils/
-  _constants/
+  _constant/
   _lib/
   page.tsx
 ```
@@ -317,6 +317,6 @@ When updating structure:
 
 - Update:
    - `README.md`
-   - `CLAUDE.md`
+   - `AGENTS.md`
 
 Keep documentation in sync with the codebase.
