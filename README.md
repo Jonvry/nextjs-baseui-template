@@ -74,6 +74,7 @@ pnpm typecheck    # typescript check
 pnpm format       # prettier
 pnpm test         # run tests
 pnpm test:watch   # watch mode
+pnpm up -L        # update dependencies to latest versions
 ```
 
 ---
