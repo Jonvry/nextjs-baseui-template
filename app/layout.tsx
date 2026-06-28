@@ -69,7 +69,7 @@ export default function RootLayout({
       <html
          lang="en"
          suppressHydrationWarning
-         className={cn("antialiased", "font-sans", figtree.variable, geistHeading.variable)}
+         className={cn("font-sans antialiased", figtree.variable, geistHeading.variable)}
       >
          <body>
             <ThemeProvider>{children}</ThemeProvider>
