@@ -85,6 +85,7 @@ pnpm up -L        # update dependencies to latest versions
 app/                 Routes, layout, metadata (sitemap.ts, robots.ts, global-error.tsx, not-found.tsx)
 components/ui/       shadcn-installed primitives
 components/          App-level composed components
+config/              Typed runtime configuration wrappers around environment variables
 context/             Client providers (theme, optional stubs)
 hooks/               Reusable client hooks (use-*)
 lib/                 Framework-agnostic utilities (cn)

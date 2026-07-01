@@ -11,13 +11,14 @@ function ThemeColorUpdater() {
    React.useEffect(() => {
       if (!resolvedTheme) return
 
+      const themeColor = getComputedStyle(document.body).backgroundColor
       let meta = document.querySelector('meta[name="theme-color"]')
       if (!meta) {
          meta = document.createElement("meta")
          meta.setAttribute("name", "theme-color")
          document.head.appendChild(meta)
       }
-      meta.setAttribute("content", resolvedTheme === "dark" ? "#141414" : "#ffffff")
+      meta.setAttribute("content", themeColor)
    }, [resolvedTheme, pathname])
 
    return null

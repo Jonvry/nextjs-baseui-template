@@ -7,6 +7,7 @@ This repository is a personal Next.js 16 starter template using the App Router, 
 - `app/` contains routes, layouts, metadata, route handlers, `robots.ts`, and `sitemap.ts`.
 - `components/ui/` is for shadcn-installed primitives only.
 - `components/` contains shared app-level composed components.
+- `config/` contains typed runtime configuration wrappers around environment variables.
 - `context/` contains client providers such as `theme-provider.tsx` and optional provider stubs.
 - `hooks/` contains reusable client hooks using the `use-*` naming pattern.
 - `lib/` contains framework-agnostic utilities; `cn` lives in `lib/utils.ts`.
@@ -88,7 +89,7 @@ Use `inputMode` when it improves mobile keyboard behavior without changing field
 
 ## Metadata, Providers, and Configuration
 
-`app/layout.tsx` defines `SITE_NAME`, `SITE_DESCRIPTION`, and `SITE_URL` from `NEXT_PUBLIC_BASE_URL`; keep metadata, viewport, Open Graph, and Twitter values aligned. When customizing a real site, update `app/robots.ts`, `app/sitemap.ts`, and the OG image reference if needed.
+`app/layout.tsx` defines `SITE_NAME`, `SITE_DESCRIPTION`, and `SITE_URL` from `NEXT_PUBLIC_APP_URL`; keep metadata, viewport, Open Graph, and Twitter values aligned. When customizing a real site, update `app/robots.ts`, `app/sitemap.ts`, and the OG image reference if needed.
 
 `context/theme-provider.tsx` also syncs `<meta name="theme-color">` on route changes and installs the global `d` theme hotkey, ignored while typing. Preserve both behaviors unless explicitly changing theme behavior.
 

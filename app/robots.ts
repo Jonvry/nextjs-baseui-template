@@ -1,4 +1,7 @@
 import type { MetadataRoute } from "next"
+import { config } from "@/config/env"
+
+const SITE_URL = config.APP_URL
 
 export default function robots(): MetadataRoute.Robots {
    return {
@@ -10,6 +13,6 @@ export default function robots(): MetadataRoute.Robots {
             // disallow: "/private/",
          },
       ],
-      sitemap: "https://sitename.com/sitemap.xml",
+      sitemap: `${SITE_URL}/sitemap.xml`,
    }
 }

@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next"
 import { Figtree, Geist } from "next/font/google"
 import { ServiceWorkerRegister } from "@/components/sw-register"
+import { config } from "@/config/env"
 import { ThemeProvider } from "@/context/theme-provider"
 import { cn } from "@/lib/utils"
 import "./globals.css"
@@ -11,7 +12,7 @@ const figtree = Figtree({ subsets: ["latin"], variable: "--font-sans" })
 const SITE_NAME = "Site Name"
 const SITE_DESCRIPTION =
    "Site description goes here. It should be a concise and compelling summary of what the site is about, ideally around 150-160 characters for optimal display in search engine results and social media previews."
-const SITE_URL = process.env.NEXT_PUBLIC_APP_URL as string
+const SITE_URL = config.APP_URL
 const SITE_IMAGE = `${SITE_URL}/opengraph-image.jpeg`
 
 export const viewport: Viewport = {
