@@ -8,6 +8,7 @@ const nextConfig = {
    /* config options here */
    experimental: {
       typedEnv: true,
+      useTypeScriptCli: true,
    },
 
    // images: {
