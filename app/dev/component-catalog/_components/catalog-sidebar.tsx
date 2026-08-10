@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/sidebar"
 import { COMPONENT_REGISTRY, type ComponentKind, type ComponentSlug } from "../_lib/registry"
 
-type CatalogSidebarProps = {
+interface CatalogSidebarProps {
    activeSlug: ComponentSlug | null
 }
 
@@ -32,7 +32,6 @@ export function CatalogSidebar({ activeSlug }: CatalogSidebarProps) {
             {GROUPS.map((group) => {
                const entries = COMPONENT_REGISTRY.filter((entry) => entry.kind === group.kind)
                if (entries.length === 0) return null
-
                return (
                   <SidebarGroup key={group.kind}>
                      <SidebarGroupLabel>{group.label}</SidebarGroupLabel>

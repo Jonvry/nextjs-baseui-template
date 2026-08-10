@@ -2,7 +2,7 @@
 
 const nextConfig = {
    // reactCompiler: true,
-   // cacheComponents: true,
+   cacheComponents: true,
    typedRoutes: true,
 
    /* config options here */
