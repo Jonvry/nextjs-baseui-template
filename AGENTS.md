@@ -26,8 +26,21 @@ pnpm start        # production server
 pnpm lint         # eslint
 pnpm typecheck    # tsc --noEmit
 pnpm format       # prettier --write "**/*.{ts,tsx}"
+pnpm doctor       # react-doctor diagnostics
 pnpm test         # vitest run
 pnpm test:watch   # vitest watch mode
+```
+
+Run React Doctor when checking React performance, memoization, hooks, or render behavior:
+
+```bash
+pnpm doctor
+```
+
+Direct one-off usage is also fine when you do not need the package script:
+
+```bash
+pnpm dlx react-doctor@latest
 ```
 
 Install shadcn components on demand only:

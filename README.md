@@ -72,9 +72,24 @@ pnpm start        # run production server
 pnpm lint         # eslint
 pnpm typecheck    # typescript check
 pnpm format       # prettier
+pnpm doctor       # react-doctor diagnostics
 pnpm test         # run tests
 pnpm test:watch   # watch mode
 pnpm up -L        # update dependencies to latest versions
+```
+
+### React Doctor
+
+Use React Doctor for diagnostics around React performance, memoization, hooks, and render behavior.
+
+```bash
+pnpm doctor
+```
+
+For one-off usage without the package script:
+
+```bash
+pnpm dlx react-doctor@latest
 ```
 
 ---
