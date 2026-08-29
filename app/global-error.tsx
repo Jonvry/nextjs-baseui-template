@@ -10,7 +10,7 @@ export default function GlobalError({
    reset: () => void
 }) {
    return (
-      <html>
+      <html lang="en">
          <body className="grid min-h-dvh place-items-center">
             <section>
                <h2 className="text-2xl font-semibold text-foreground">Something went wrong!</h2>

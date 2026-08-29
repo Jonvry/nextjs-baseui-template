@@ -9,12 +9,15 @@ type BeforeInstallPromptEvent = Event & {
 
 export function InstallPrompt() {
    const [deferred, setDeferred] = useState<BeforeInstallPromptEvent | null>(null)
-
-   const isIOS = typeof window !== "undefined" && /iPad|iPhone|iPod/.test(navigator.userAgent)
-   const isStandalone =
-      typeof window !== "undefined" && window.matchMedia("(display-mode: standalone)").matches
+   const [isIOS, setIsIOS] = useState(false)
+   const [isStandalone, setIsStandalone] = useState(false)
 
    useEffect(() => {
+      const standaloneQuery = window.matchMedia?.("(display-mode: standalone)")
+
+      setIsIOS(/iPad|iPhone|iPod/.test(navigator.userAgent))
+      setIsStandalone(standaloneQuery?.matches ?? false)
+
       function onPrompt(e: Event) {
          e.preventDefault()
          setDeferred(e as BeforeInstallPromptEvent)

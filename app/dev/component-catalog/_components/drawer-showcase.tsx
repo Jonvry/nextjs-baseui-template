@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import {
    Drawer,
@@ -17,6 +18,7 @@ import {
    DrawerViewport,
 } from "@/components/ui/drawer"
 import { Input } from "@/components/ui/input"
+import { cn } from "@/lib/utils"
 import { ShowcaseRow } from "./showcase-row"
 import { ShowcaseSection } from "./showcase-section"
 
@@ -29,6 +31,8 @@ const PROFILE_ACTIONS = [
 ]
 
 export function DrawerShowcase() {
+   const [isActionSheetAnimating, setIsActionSheetAnimating] = useState(false)
+
    return (
       <ShowcaseSection
          title="Drawer"
@@ -137,7 +141,14 @@ export function DrawerShowcase() {
                      <DrawerPopup
                         data-side="bottom"
                         style={{ transform: "translateY(var(--drawer-swipe-movement-y))" }}
-                        className="pointer-events-none mx-auto box-border flex w-full max-w-md flex-col gap-3 px-4 pb-[calc(1rem+env(safe-area-inset-bottom,0))] transition-transform duration-450 ease-[cubic-bezier(0.32,0.72,0,1)] will-change-transform outline-none data-ending-style:translate-y-[calc(100%+1rem+2px)]! data-ending-style:duration-[calc(var(--drawer-swipe-strength)*0.4s)] data-starting-style:translate-y-[calc(100%+1rem+2px)]! data-swiping:select-none"
+                        className={cn(
+                           "pointer-events-none mx-auto box-border flex w-full max-w-md flex-col gap-3 px-4 pb-[calc(1rem+env(safe-area-inset-bottom,0))] transition-transform duration-450 ease-[cubic-bezier(0.32,0.72,0,1)] outline-none data-ending-style:translate-y-[calc(100%+1rem+2px)]! data-ending-style:duration-[calc(var(--drawer-swipe-strength)*0.4s)] data-starting-style:translate-y-[calc(100%+1rem+2px)]! data-swiping:select-none",
+                           isActionSheetAnimating && "will-change-transform"
+                        )}
+                        onAnimationEnd={() => setIsActionSheetAnimating(false)}
+                        onMouseEnter={() => setIsActionSheetAnimating(true)}
+                        onTransitionEnd={() => setIsActionSheetAnimating(false)}
+                        onTransitionStart={() => setIsActionSheetAnimating(true)}
                      >
                         <DrawerInnerContent className="pointer-events-auto overflow-hidden rounded-2xl bg-popover text-popover-foreground outline outline-border">
                            <DrawerTitle className="sr-only">Profile actions</DrawerTitle>
