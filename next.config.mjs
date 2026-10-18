@@ -3,6 +3,7 @@
 const nextConfig = {
    // reactCompiler: true,
    cacheComponents: true,
+   partialPrefetching: true,
    typedRoutes: true,
 
    /* config options here */

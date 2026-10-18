@@ -106,6 +106,8 @@ hooks/               Reusable client hooks (use-*)
 lib/                 Framework-agnostic utilities (cn)
 public/              Static assets served at /
 proxy.ts             Next 16 middleware entry point
+.agents/skills/      Shared agent skills
+.claude/             Claude Code agents, commands, and skills
 ```
 
 ---
