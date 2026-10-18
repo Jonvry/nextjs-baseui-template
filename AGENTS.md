@@ -12,6 +12,8 @@ This repository is a personal Next.js 16 starter template using the App Router, 
 - `hooks/` contains reusable client hooks using the `use-*` naming pattern.
 - `lib/` contains framework-agnostic utilities; `cn` lives in `lib/utils.ts`.
 - `public/` contains static assets served from `/`.
+- `.agents/skills/` contains shared agent skills.
+- `.claude/` contains Claude Code agents, commands, and skills.
 
 Routes use feature-based architecture with Next.js private folders prefixed by `_`. Route-owned components, hooks, stores, utilities, constants, and business logic belong beside the route in folders such as `_components`, `_hooks`, `_stores`, `_utils`, `_constant`, and `_lib`. Do not import from one route's private folder into another route. Duplicate first; lift stable shared code to `components/`, `hooks/`, or `lib/` later.
 

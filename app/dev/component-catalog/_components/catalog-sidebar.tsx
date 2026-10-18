@@ -44,6 +44,7 @@ export function CatalogSidebar({ activeSlug }: CatalogSidebarProps) {
                                     render={
                                        <Link
                                           href={`/dev/component-catalog?component=${entry.slug}`}
+                                          prefetch={true}
                                        />
                                     }
                                  >
